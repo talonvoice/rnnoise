@@ -470,6 +470,7 @@ float rnnoise_process_frame(DenoiseState *st, float *out, const float *in) {
 
   if (!silence) {
     compute_rnn(&st->rnn, g, &vad_prob, features);
+#if 0
     pitch_filter(X, P, Ex, Ep, Exp, g);
     for (i=0;i<NB_BANDS;i++) {
       float alpha = .6f;
@@ -483,9 +484,12 @@ float rnnoise_process_frame(DenoiseState *st, float *out, const float *in) {
       X[i].i *= gf[i];
     }
 #endif
+#endif
   }
 
+#if 0
   frame_synthesis(st, out, X);
+#endif
   return vad_prob;
 }
 

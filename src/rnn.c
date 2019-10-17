@@ -165,6 +165,7 @@ void compute_rnn(RNNState *rnn, float *gains, float *vad, const float *input) {
   compute_dense(rnn->model->input_dense, dense_out, input);
   compute_gru(rnn->model->vad_gru, rnn->vad_gru_state, dense_out);
   compute_dense(rnn->model->vad_output, vad, rnn->vad_gru_state);
+#if 0
   for (i=0;i<rnn->model->input_dense_size;i++) noise_input[i] = dense_out[i];
   for (i=0;i<rnn->model->vad_gru_size;i++) noise_input[i+rnn->model->input_dense_size] = rnn->vad_gru_state[i];
   for (i=0;i<INPUT_SIZE;i++) noise_input[i+rnn->model->input_dense_size+rnn->model->vad_gru_size] = input[i];
@@ -175,4 +176,5 @@ void compute_rnn(RNNState *rnn, float *gains, float *vad, const float *input) {
   for (i=0;i<INPUT_SIZE;i++) denoise_input[i+rnn->model->vad_gru_size+rnn->model->noise_gru_size] = input[i];
   compute_gru(rnn->model->denoise_gru, rnn->denoise_gru_state, denoise_input);
   compute_dense(rnn->model->denoise_output, gains, rnn->denoise_gru_state);
+#endif
 }
