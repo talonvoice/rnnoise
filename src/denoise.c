@@ -321,8 +321,10 @@ int rnnoise_init(DenoiseState *st, RNNModel *model) {
   else
     st->rnn.model = &model_cb;
   st->rnn.vad_gru_state = calloc(sizeof(float), st->rnn.model->vad_gru_size);
+#if 0
   st->rnn.noise_gru_state = calloc(sizeof(float), st->rnn.model->noise_gru_size);
   st->rnn.denoise_gru_state = calloc(sizeof(float), st->rnn.model->denoise_gru_size);
+#endif
   return 0;
 }
 
@@ -337,8 +339,10 @@ void rnnoise_destroy(DenoiseState *st) {
   if (st->init)
     free(st->kfft);
   free(st->rnn.vad_gru_state);
+#if 0
   free(st->rnn.noise_gru_state);
   free(st->rnn.denoise_gru_state);
+#endif
   free(st);
 }
 
