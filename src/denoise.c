@@ -335,6 +335,10 @@ DenoiseState *rnnoise_create(RNNModel *model) {
   return st;
 }
 
+void rnnoise_reset(DenoiseState *st) {
+  memset(st->rnn.vad_gru_state, 0, sizeof(float) * st->rnn.model->vad_gru_size);
+}
+
 void rnnoise_destroy(DenoiseState *st) {
   if (st->init)
     free(st->kfft);
