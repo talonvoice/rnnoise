@@ -11037,15 +11037,6 @@ const struct RNNModel model_orig = {
     24,
     &vad_gru,
 
-    48,
-    &noise_gru,
-
-    96,
-    &denoise_gru,
-
-    22,
-    &denoise_output,
-
     1,
     &vad_output
 };

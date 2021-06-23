@@ -64,9 +64,6 @@ RNNModel *rnnoise_model_from_file(FILE *f)
 
     ALLOC_LAYER(DenseLayer, input_dense);
     ALLOC_LAYER(GRULayer, vad_gru);
-    ALLOC_LAYER(GRULayer, noise_gru);
-    ALLOC_LAYER(GRULayer, denoise_gru);
-    ALLOC_LAYER(DenseLayer, denoise_output);
     ALLOC_LAYER(DenseLayer, vad_output);
 
 #define INPUT_VAL(name) do { \
@@ -127,9 +124,6 @@ RNNModel *rnnoise_model_from_file(FILE *f)
 
     INPUT_DENSE(input_dense);
     INPUT_GRU(vad_gru);
-    INPUT_GRU(noise_gru);
-    INPUT_GRU(denoise_gru);
-    INPUT_DENSE(denoise_output);
     INPUT_DENSE(vad_output);
 
     return ret;
@@ -158,9 +152,6 @@ void rnnoise_model_free(RNNModel *model)
         return;
     FREE_DENSE(input_dense);
     FREE_GRU(vad_gru);
-    FREE_GRU(noise_gru);
-    FREE_GRU(denoise_gru);
-    FREE_DENSE(denoise_output);
     FREE_DENSE(vad_output);
     free(model);
 }
